@@ -1,0 +1,18 @@
+.game-board{
+    margin-bottom: 20px;
+    &__row{
+        display: flex;
+        gap: 2px;
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .letter{
+        align-items: center;
+        border: 1px solid white;
+        display: grid;
+        height: 50px;
+        justify-content: center;
+        width: 50px;
+    }
+}

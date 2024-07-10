@@ -9,10 +9,20 @@
     <title>Vite Template</title>
   </head>
   <body>
-    <main>
-      <h1>WORDLE</h1>
-      <div class="game-board">
+    <main class="main">
+      <h1 class="title">WORDLE</h1>
+      <div id="game-board" class="game-board">
 
+      </div>
+
+      <form action="" id="form">
+        <input id="input-word" type="text" name="word" class="input" placeholder="type your solution">
+      </form>
+
+      <div id="error-div" class="error-div d-none">
+        <span id="error-text" class="error-text">
+          the word is not the length it is suposused to be 
+        </span>
       </div>
     </main>
     <script type="module" src="./js/index.js"></script>
