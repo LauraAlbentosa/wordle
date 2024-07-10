@@ -5,7 +5,7 @@ const gameBoardDiv = document.getElementById('game-board');
 const formElement = document.getElementById('form');
 const inputElement = document.getElementById('input-word');
 const errorDivElement = document.getElementById('error-div');
-const errorText = document.getElementById('error-text')
+const errorText = document.getElementById('error-text');
 
 const posibleWords = [
   'bolsa',
@@ -33,6 +33,7 @@ const selectWord = words => {
 
 const createBoard = word => {
   const fragment = document.createDocumentFragment();
+
   for (let i = 0; i < 5; i++) {
     const newDiv = document.createElement('div');
     newDiv.classList.add('game-board__row');
@@ -64,37 +65,40 @@ const checkWordLength = word => {
 let counter = 0;
 
 const printLetters = () => {
-  
   const userWord = checkWordLength(finalWord);
   const divWords = document.querySelectorAll('div.game-board__row');
 
-  if (checkWordLength) {
-    counter++
+  if (checkWordLength(finalWord)) {
     const spans = divWords[counter].children;
-    for ( let i = 0;i<userWord.length; i++){
-        spans[i].textContent = userWord.charAt(i)
-        if(counter === 4){
-            inputElement.disabled = true
-            errorDivElement.classList.replace('d-none', 'd-block')
-            errorText.textContent = 'You lost'
-        }
-       
+    counter++;
+    for (let i = 0; i < userWord.length; i++) {
+      spans[i].textContent = userWord.charAt(i);
+      if (counter === 5) {
+        inputElement.disabled = true;
+        //errorDivElement.classList.replace('d-none', 'd-block');
+      }
     }
-
-  }else{
-    counter =counter
+  } else {
+    counter = counter;
   }
-
-  console.log(counter)
-  
+  //console.log(counter);
 };
 
-const trys = event =>{
-    event.preventDefault()
-    printLetters()
-   
-}
+const tries = event => {
+  event.preventDefault();
+  printLetters();
+  inputElement.value = '';
+};
+
+const compareWords = span => {
+  for (let i = 0; i < finalWord.length; i++) {
+    if (inputElement.value.includes(finalWord.charAt(i))) {
+      span.classList.add('yellow');
+      console.log('yes' + finalWord.charAt(i));
+    }
+  }
+};
 
 console.log(finalWord);
 createBoard(finalWord);
-formElement.addEventListener('submit', trys);
+formElement.addEventListener('submit', tries);
