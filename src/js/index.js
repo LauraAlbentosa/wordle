@@ -6,23 +6,28 @@ const formElement = document.getElementById('form');
 const inputElement = document.getElementById('input-word');
 const errorDivElement = document.getElementById('error-div');
 const errorText = document.getElementById('error-text');
+const reStartButton = document.getElementById('restart-btn')
 
 const posibleWords = [
-  'bolsa',
+  'botin',
   'salsa',
   'paseo',
   'aire',
   'retos',
   'comas',
+  'lima',
+  'pincel',
   'posar',
   'beber',
+  'libreta',
+  'sonrisa',
   'risas',
   'cosas',
-  'bolos',
-  ' lapiz'
+  'bolso',
+  ' lapices'
 ];
 
-const testWords = ['cosa', 'ordenador', 'paneo', 'raton', 'ola'];
+//const testWords = ['cosa', 'ordenador', 'paneo', 'raton', 'ola'];
 
 const selectWord = words => {
   const indexWord = Math.floor(Math.random() * words.length);
@@ -47,7 +52,7 @@ const createBoard = word => {
   gameBoardDiv.append(fragment);
 };
 
-const finalWord = selectWord(testWords);
+const finalWord = selectWord(posibleWords);
 
 const checkWordLength = word => {
   const userWord = inputElement.value;
@@ -73,11 +78,15 @@ const printLetters = () => {
     counter++;
     for (let i = 0; i < userWord.length; i++) {
       spans[i].textContent = userWord.charAt(i);
-      if (counter === 5) {
+      compareWords(spans[i], i)
+      if (counter === 5 && !compareWords(spans[i], i)) {
         inputElement.disabled = true;
-        //errorDivElement.classList.replace('d-none', 'd-block');
+        errorText.textContent = 'You lost'
+        errorDivElement.classList.replace('d-none', 'd-block');
       }
     }
+
+    
   } else {
     counter = counter;
   }
@@ -90,13 +99,25 @@ const tries = event => {
   inputElement.value = '';
 };
 
-const compareWords = span => {
-  for (let i = 0; i < finalWord.length; i++) {
-    if (inputElement.value.includes(finalWord.charAt(i))) {
-      span.classList.add('yellow');
-      console.log('yes' + finalWord.charAt(i));
-    }
+const compareWords = (span, index) => {
+
+  const letterSpan = span.textContent
+  if (inputElement.value === finalWord){
+    errorDivElement.classList.replace('d-none', 'd-block');
+    errorText.textContent = 'You won'
+    span.classList.add('green')
+    inputElement.disabled = true
+    return true
   }
+  
+  if(finalWord.includes(letterSpan) && finalWord.indexOf(letterSpan) !== index ){
+    span.classList.add('yellow') 
+  }else if(finalWord.indexOf(letterSpan) === index){
+    span.classList.add('green')
+  }else{
+    span.classList.add('grey')
+  }
+  
 };
 
 console.log(finalWord);

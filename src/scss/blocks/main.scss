@@ -1,39 +1,39 @@
-.main {
-  text-align: center;
-  display: block;
+.main{
+    text-align: center;
+    display: block;
 }
 
-.error-div {
-  height: 50px;
-  width: fit-content;
-  background-color: rgba(255, 255, 255, 0.781);
-  color: black;
-  padding: 10px;
-  border-radius: 3px;
-  display: flex;
-  align-items: center;
-  justify-items: center;
-  margin: 10px auto;
+.error-div{
+    height: 50px;
+    width: fit-content;
+    background-color: rgba(255, 255, 255, 0.781);
+    color: black;
+    padding: 10px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    margin: 10px auto;
 }
 
-.d-block {
-  display: block;
-}
-.d-none {
-  display: none;
+.d-block{
+    display: block;
 }
 
-.yellow {
-  background-color: yellow;
-  color: black;
+.d-none{
+    display: none;
 }
 
-.red {
-  background-color: red;
-  color: black;
+.yellow{
+    background-color: yellow;
+    color: black;
 }
 
-.green {
-  background-color: green;
-  color: black;
+.green{
+    background-color: rgb(14, 197, 14);
+    color: black;
+}
+
+.grey{
+    background-color: grey;
 }
